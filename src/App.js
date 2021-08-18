@@ -2,12 +2,14 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyle from './global/global';
+import { Header } from './components/Header';
 
-import { Routes } from './routes/index';
+import { Routes } from './routes';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes />
       <GlobalStyle />
     </BrowserRouter>
