@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { Container, Cart } from './styles';
 
-export function Header() {
+function Header({ cart }) {
+  console.log(cart.length);
   return (
     <Container>
       <Link to="/">
@@ -16,7 +18,7 @@ export function Header() {
       <Cart to="/cart">
         <div>
           <strong>Meu carrinho</strong>
-          <span>3 item</span>
+          <span>{cart.length} item</span>
         </div>
         <img
           src="https://image.flaticon.com/icons/png/512/3787/3787523.png"
@@ -26,3 +28,7 @@ export function Header() {
     </Container>
   );
 }
+
+export default connect((state) => ({
+  cart: state.cart,
+}))(Header);

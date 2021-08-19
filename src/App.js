@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import GlobalStyle from './global/global';
-import { Header } from './components/Header';
+import Header from './components/Header';
 import { store } from './store';
 
 import { Routes } from './routes';
