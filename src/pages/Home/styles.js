@@ -9,7 +9,7 @@ export const Container = styled.ul`
   li {
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: #f9f9f9;
     border-radius: 4px;
     padding: 20px;
 
@@ -35,12 +35,12 @@ export const Container = styled.ul`
       display: flex;
       align-items: center;
       background: #42c264;
-      color: #fff;
+      color: #f9f9f9;
       border: 0;
       border-radius: 4px;
       overflow: hidden;
       margin-top: auto;
-      transition: filter 0.2s;
+      transition: filter 0.2ms;
 
       &:hover {
         filter: brightness(0.9);
