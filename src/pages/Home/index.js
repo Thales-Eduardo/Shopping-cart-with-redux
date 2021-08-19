@@ -9,9 +9,9 @@ export function Home() {
       <li>
         <img
           src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
+          alt="Tênis"
         />
-        <strong>Xbox series S</strong>
+        <strong>Tênis</strong>
         <span>R$2699,90</span>
 
         <button type="button">

@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+para rodar o `json-server`.
+
+```bash
+yarn json-server server.json -p 3333 -w
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
