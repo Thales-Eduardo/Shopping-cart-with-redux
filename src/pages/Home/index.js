@@ -1,107 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+
+import { api } from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 import { Container } from './styles';
 
-export function Home() {
-  return (
-    <Container>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="Tênis"
-        />
-        <strong>Tênis</strong>
-        <span>R$2699,90</span>
+export class Home extends Component {
+  state = {
+    products: [],
+  };
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+  async componentDidMount() {
+    const response = await api.get('product');
 
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
-        />
-        <strong>Xbox series S</strong>
-        <span>R$2699,90</span>
+    const DATA = response.data.map((product) => ({
+      ...product,
+      formatPrice: formatPrice(product.price),
+    }));
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+    this.setState({ products: DATA });
+  }
 
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
-        />
-        <strong>Xbox series S</strong>
-        <span>R$2699,90</span>
+  render() {
+    const { products } = this.state;
+    return (
+      <Container>
+        {products.map((product) => (
+          <li key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <strong>{product.title}</strong>
+            <span>{product.formatPrice}</span>
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+            <button type="button">
+              <div>
+                <MdAddShoppingCart size={16} color="#fff" /> 3
+              </div>
 
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
-        />
-        <strong>Xbox series S</strong>
-        <span>R$2699,90</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
-        />
-        <strong>Xbox series S</strong>
-        <span>R$2699,90</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-downshifter-11-masculino/26/HZM-5208-026/HZM-5208-026_detalhe1.jpg?ts=1620698712?ims=280x280"
-          alt="xbox series S"
-        />
-        <strong>Xbox series S</strong>
-        <span>R$2699,90</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR NO CARRINHO</span>
-        </button>
-      </li>
-    </Container>
-  );
+              <span>ADICIONAR NO CARRINHO</span>
+            </button>
+          </li>
+        ))}
+      </Container>
+    );
+  }
 }

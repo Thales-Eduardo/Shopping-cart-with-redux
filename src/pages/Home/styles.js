@@ -58,7 +58,7 @@ export const Container = styled.ul`
       }
     }
 
-    span {
+    > span {
       flex: 1;
       text-align: center;
       font-weight: bold;
