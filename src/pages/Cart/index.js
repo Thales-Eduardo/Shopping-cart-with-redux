@@ -8,7 +8,7 @@ import {
 
 import { Container, Product, PriceTotal } from './styles';
 
-function Cart({ cart }) {
+function Cart({ cart, dispatch }) {
   return (
     <Container>
       <Product>
@@ -48,7 +48,15 @@ function Cart({ cart }) {
                 <strong>R$4000,80</strong>
               </td>
               <td>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() =>
+                    dispatch({
+                      type: 'REMOVE_FROM_CART',
+                      id: product.id,
+                    })
+                  }
+                >
                   <MdDelete size={20} color="#42c264" />
                 </button>
               </td>
