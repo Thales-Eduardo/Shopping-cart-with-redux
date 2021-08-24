@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Container, Cart } from './styles';
 
 function Header({ cart }) {
-  console.log(cart.length);
   return (
     <Container>
       <Link to="/">
