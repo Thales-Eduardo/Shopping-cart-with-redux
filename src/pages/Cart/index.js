@@ -7,10 +7,11 @@ import {
 } from 'react-icons/md';
 
 import { removeFromCart, updateAmount } from '../../store/modules/cart/actions';
+import { formatPrice } from '../../util/format';
 
 import { Container, Product, PriceTotal } from './styles';
 
-function Cart({ cart, dispatch }) {
+function Cart({ cart, dispatch, total }) {
   function increment(product) {
     dispatch(updateAmount(product.id, product.amount + 1));
   }
@@ -55,7 +56,7 @@ function Cart({ cart, dispatch }) {
                 </div>
               </td>
               <td>
-                <strong>R$4000,80</strong>
+                <strong>{product.subtotal}</strong>
               </td>
               <td>
                 <button
@@ -74,7 +75,7 @@ function Cart({ cart, dispatch }) {
         <button type="button">Finalizar pedido(s)</button>
         <PriceTotal>
           <span>Total</span>
-          <strong>R$4000,99</strong>
+          <strong>{total}</strong>
         </PriceTotal>
       </footer>
     </Container>
@@ -82,7 +83,16 @@ function Cart({ cart, dispatch }) {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
+  cart: state.cart.map((product) => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0),
+  ),
 });
 
 export default connect(mapStateToProps)(Cart);
